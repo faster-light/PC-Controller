@@ -21,6 +21,8 @@ unsigned long lastMsg = 0;
 char msg[MSG_BUFFER_SIZE];
 // -------------------------------------------------------------------------------------------- //
 
+int pc_swicth_pin = 22;
+
 // Second core object (parallel main loop worked)
 TaskHandle_t SecondCore;
 
@@ -39,7 +41,10 @@ int strcheck(char *str1, const char *str2) {
 // --------------------------------- Main loop (second core) ---------------------------------- // 
 void SecondCore_Code( void * parameter) {
   for(;;) {
-    delay(100);
+    digitalWrite(pc_swicth_pin, HIGH);
+    delay(2000);
+    digitalWrite(pc_swicth_pin, LOW);
+    delay(2000);
   }
 }
 // ----------------------------- OTA function (usually no change) ----------------------------- //
@@ -201,6 +206,9 @@ void setup() {
 
   client.setServer(mqtt_host, 1883);
   client.setCallback(callback);
+
+  pinMode(OUTPUT, pc_swicth_pin);
+  digitalWrite(LOW, pc_swicth_pin);
 
   xTaskCreatePinnedToCore(
       SecondCore_Code, /* Function to implement the task */
