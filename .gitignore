@@ -1,0 +1,6 @@
+src/Personal.h
+.pio
+.vscode
+lib
+test
+include
