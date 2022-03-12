@@ -208,7 +208,8 @@ void setup() {
   client.setCallback(callback);
 
   pinMode(OUTPUT, pc_swicth_pin);
-  digitalWrite(LOW, pc_swicth_pin);
+  digitalWrite(pc_swicth_pin, LOW);
+
 
   xTaskCreatePinnedToCore(
       SecondCore_Code, /* Function to implement the task */
