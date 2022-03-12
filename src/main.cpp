@@ -207,7 +207,7 @@ void setup() {
   client.setServer(mqtt_host, 1883);
   client.setCallback(callback);
 
-  pinMode(OUTPUT, pc_swicth_pin);
+  pinMode(pc_swicth_pin, OUTPUT);
   digitalWrite(pc_swicth_pin, LOW);
 
 
