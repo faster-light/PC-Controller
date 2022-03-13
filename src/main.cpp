@@ -44,13 +44,13 @@ void SecondCore_Code( void * parameter) {
   for(;;) {
     digitalWrite(pc_swicth_pin_1, HIGH);
     digitalWrite(pc_swicth_pin_2, LOW);
-    delay(2000);
+    delay(200);
     digitalWrite(pc_swicth_pin_1, LOW);
     digitalWrite(pc_swicth_pin_2, HIGH);
-    delay(2000);
+    delay(200);
     digitalWrite(pc_swicth_pin_1, LOW);
     digitalWrite(pc_swicth_pin_2, LOW);
-    delay(2000);
+    delay(200);
   }
 }
 // ----------------------------- OTA function (usually no change) ----------------------------- //
