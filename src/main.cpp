@@ -42,9 +42,9 @@ int strcheck(char *str1, const char *str2) {
 void SecondCore_Code( void * parameter) {
   for(;;) {
     digitalWrite(pc_on_pin, HIGH);
-    delay(1000);
+    delay(6000);
     digitalWrite(pc_on_pin, LOW);
-    delay(1000);
+    delay(6000);
   }
 }
 // ----------------------------- OTA function (usually no change) ----------------------------- //
