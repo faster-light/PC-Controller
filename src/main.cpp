@@ -21,7 +21,7 @@ unsigned long lastMsg = 0;
 char msg[MSG_BUFFER_SIZE];
 // -------------------------------------------------------------------------------------------- //
 
-int pc_on_pin = 33;
+int pc_on_pin = 22;
 
 // Second core object (parallel main loop worked)
 TaskHandle_t SecondCore;
