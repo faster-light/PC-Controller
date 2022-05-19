@@ -54,10 +54,7 @@ int strcheck(char *str1, const char *str2) {
 }
 // --------------------------------- Main loop (second core) ---------------------------------- // 
 void SecondCore_Code( void * parameter) {
-  for(;;) {
-    digitalWrite(en_left_pin, HIGH);
-    digitalWrite(en_right_pin, HIGH);
-    
+  for(;;) { 
     
     digitalWrite(pc_on_pin, HIGH);
     dacWrite(dac_left_pin, 0);
