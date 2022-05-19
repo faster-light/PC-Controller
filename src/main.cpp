@@ -22,6 +22,20 @@ char msg[MSG_BUFFER_SIZE];
 // -------------------------------------------------------------------------------------------- //
 
 int pc_on_pin = 22;
+int adc_left_pin = 25;
+int adc_right_pin = 26;
+
+int en_left_pin = 18;
+int en_right_pin = 19;
+
+int ws_left_pin = 16;
+int ws_right_pin = 17;
+int ws_third_pin = 37;
+
+int voltage_left_pin = 34;
+int voltage_right_pin = 35;
+
+int voltage_5v_pin = 33;
 
 // Second core object (parallel main loop worked)
 TaskHandle_t SecondCore;
