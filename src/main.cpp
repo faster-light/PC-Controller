@@ -22,8 +22,8 @@ char msg[MSG_BUFFER_SIZE];
 // -------------------------------------------------------------------------------------------- //
 
 int pc_on_pin = 22;
-int adc_left_pin = 25;
-int adc_right_pin = 26;
+int dac_left_pin = 25;
+int dac_right_pin = 26;
 
 int en_left_pin = 18;
 int en_right_pin = 19;
@@ -55,9 +55,20 @@ int strcheck(char *str1, const char *str2) {
 // --------------------------------- Main loop (second core) ---------------------------------- // 
 void SecondCore_Code( void * parameter) {
   for(;;) {
+    digitalWrite(en_left_pin, HIGH);
+    digitalWrite(en_right_pin, HIGH);
+    
+    
     digitalWrite(pc_on_pin, HIGH);
+    dacWrite(dac_left_pin, 0);
+    dacWrite(dac_right_pin, 0);
     delay(6000);
+    dacWrite(dac_left_pin, 127);
+    dacWrite(dac_right_pin, 127);
     digitalWrite(pc_on_pin, LOW);
+    delay(6000);
+    dacWrite(dac_left_pin, 255);
+    dacWrite(dac_right_pin, 255);
     delay(6000);
   }
 }
@@ -223,8 +234,13 @@ void setup() {
 
   pinMode(pc_on_pin, OUTPUT);
   digitalWrite(pc_on_pin, LOW);
+  
+  pinMode(en_left_pin, OUTPUT);
+  digitalWrite(en_left_pin, LOW);  
 
-
+  pinMode(en_right_pin, OUTPUT);
+  digitalWrite(en_right_pin, LOW);
+  
   xTaskCreatePinnedToCore(
       SecondCore_Code, /* Function to implement the task */
       "SecondCore", /* Name of the task */
