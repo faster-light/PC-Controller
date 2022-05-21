@@ -78,7 +78,7 @@ void SecondCore_Code( void * parameter) {
 
     for(int i = 0; i < strip_R.numPixels(); i++) { // For each pixel in strip...
       strip_R.setPixelColor(i, 0, 0, 0);         //  Set pixel's color (in RAM)
-      strip_R.setPixelColor(i, 0, 0, 0);
+      strip_L.setPixelColor(i, 0, 0, 0);
     }    
 
     strip_L.show();
