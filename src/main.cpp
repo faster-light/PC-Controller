@@ -48,6 +48,7 @@ int voltage_5v_pin = 33;
 // Second core object (parallel main loop worked)
 TaskHandle_t SecondCore;
 
+
 // --------------------------- Char* comparison (usually no change) --------------------------- //
 int strcheck(char *str1, const char *str2) {
   int i = 0;
@@ -64,22 +65,22 @@ int strcheck(char *str1, const char *str2) {
 void SecondCore_Code( void * parameter) {
   for(;;) { 
 
-    for(int i = 0; i < strip_L.numPixels(); i++) { // For each pixel in strip...
-      strip_L.setPixelColor(i, 0, 20, 200);         //  Set pixel's color (in RAM)
-      strip_L.show();                          //  Update strip to match
-      delay(100);                           //  Pause for a moment
+    for(int i = 0; i < strip_L.numPixels(); i++) {
+      strip_L.setPixelColor(i, 0, 20, 200);
+      strip_L.show();
+      delay(100);
     }
 
-    for(int i = 0; i < strip_R.numPixels(); i++) { // For each pixel in strip...
-      strip_R.setPixelColor(i, 200, 20, 0);         //  Set pixel's color (in RAM)
-      strip_R.show();                          //  Update strip to match
-      delay(100);                           //  Pause for a moment
+    for(int i = 0; i < strip_R.numPixels(); i++) {
+      strip_R.setPixelColor(i, strip_R.ColorHSV(234, 100, 78.4));
+      strip_R.show();
+      delay(100);
     }
 
-    for(int i = 0; i < strip_R.numPixels(); i++) { // For each pixel in strip...
-      strip_R.setPixelColor(i, 0, 0, 0);         //  Set pixel's color (in RAM)
+    for(int i = 0; i < strip_R.numPixels(); i++) {
+      strip_R.setPixelColor(i, 0, 0, 0);
       strip_L.setPixelColor(i, 0, 0, 0);
-    }    
+    }
 
     strip_L.show();
     strip_R.show();
