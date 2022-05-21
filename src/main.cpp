@@ -82,6 +82,8 @@ void SecondCore_Code( void * parameter) {
       strip_L.setPixelColor(i, 0, 0, 0);
     }
 
+    delay(10000);
+
     strip_L.show();
     strip_R.show();
 
