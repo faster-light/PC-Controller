@@ -10,9 +10,12 @@
 #include <Personal.h>
 
 #include <Adafruit_NeoPixel.h>
-#define LED_PIN    16
-#define LED_COUNT 60
-Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+#define LED_PIN_L    16
+#define LED_PIN_R    17
+
+#define LED_COUNT    48
+Adafruit_NeoPixel strip_L(LED_COUNT, LED_PIN_L, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_R(LED_COUNT, LED_PIN_R, NEO_GRB + NEO_KHZ800);
 
 // Main variable and other settings
 // Set hostname
@@ -61,11 +64,25 @@ int strcheck(char *str1, const char *str2) {
 void SecondCore_Code( void * parameter) {
   for(;;) { 
 
-    for(int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
-      strip.setPixelColor(i, 0, 20, 200);         //  Set pixel's color (in RAM)
-      strip.show();                          //  Update strip to match
+    for(int i = 0; i < strip_L.numPixels(); i++) { // For each pixel in strip...
+      strip_L.setPixelColor(i, 0, 20, 200);         //  Set pixel's color (in RAM)
+      strip_L.show();                          //  Update strip to match
       delay(100);                           //  Pause for a moment
     }
+
+    for(int i = 0; i < strip_R.numPixels(); i++) { // For each pixel in strip...
+      strip_R.setPixelColor(i, 200, 20, 0);         //  Set pixel's color (in RAM)
+      strip_R.show();                          //  Update strip to match
+      delay(100);                           //  Pause for a moment
+    }
+
+    for(int i = 0; i < strip_R.numPixels(); i++) { // For each pixel in strip...
+      strip_R.setPixelColor(i, 0, 0, 0);         //  Set pixel's color (in RAM)
+      strip_R.setPixelColor(i, 0, 0, 0);
+    }    
+
+    strip_L.show();
+    strip_R.show();
 
   }
 }
@@ -238,9 +255,13 @@ void setup() {
   pinMode(en_right_pin, OUTPUT);
   digitalWrite(en_right_pin, LOW);
   
-  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
-  strip.show();            // Turn OFF all pixels ASAP
-  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+  strip_L.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip_L.show();            // Turn OFF all pixels ASAP
+  strip_L.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+
+  strip_R.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip_R.show();            // Turn OFF all pixels ASAP
+  strip_R.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
 
   xTaskCreatePinnedToCore(
       SecondCore_Code, /* Function to implement the task */
