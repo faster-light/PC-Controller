@@ -277,5 +277,5 @@ void setup() {
 void loop() {
   ArduinoOTA.handle();
   wifi_mqtt_servises();
-
+  delay(50);
 }
