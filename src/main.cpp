@@ -66,13 +66,13 @@ void SecondCore_Code( void * parameter) {
   for(;;) { 
 
     for(int i = 0; i < strip_L.numPixels(); i++) {
-      strip_L.setPixelColor(i, 0, 20, 200);
+      strip_L.setPixelColor(i, strip_R.ColorHSV(234 * 182, 100 * 2.55, 78 * 2.55));
       strip_L.show();
       delay(100);
     }
 
     for(int i = 0; i < strip_R.numPixels(); i++) {
-      strip_R.setPixelColor(i, strip_R.ColorHSV(260 * 182, 100 * 2.55, 85 * 2.55));
+      strip_R.setPixelColor(i, strip_R.ColorHSV(317 * 182, 100 * 2.55, 78 * 2.55));
       strip_R.show();
       delay(100);
     }
