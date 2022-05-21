@@ -9,6 +9,11 @@
 // File with personal information
 #include <Personal.h>
 
+#include <Adafruit_NeoPixel.h>
+#define LED_PIN    16
+#define LED_COUNT 60
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
 // Main variable and other settings
 // Set hostname
 const char* hostname_OTA = "PC-Controller";
@@ -55,18 +60,13 @@ int strcheck(char *str1, const char *str2) {
 // --------------------------------- Main loop (second core) ---------------------------------- // 
 void SecondCore_Code( void * parameter) {
   for(;;) { 
-    
-    digitalWrite(pc_on_pin, HIGH);
-    dacWrite(dac_left_pin, 0);
-    dacWrite(dac_right_pin, 0);
-    delay(6000);
-    dacWrite(dac_left_pin, 127);
-    dacWrite(dac_right_pin, 127);
-    digitalWrite(pc_on_pin, LOW);
-    delay(6000);
-    dacWrite(dac_left_pin, 255);
-    dacWrite(dac_right_pin, 255);
-    delay(6000);
+
+    for(int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
+      strip.setPixelColor(i, 0, 20, 200);         //  Set pixel's color (in RAM)
+      strip.show();                          //  Update strip to match
+      delay(100);                           //  Pause for a moment
+    }
+
   }
 }
 // ----------------------------- OTA function (usually no change) ----------------------------- //
@@ -238,6 +238,10 @@ void setup() {
   pinMode(en_right_pin, OUTPUT);
   digitalWrite(en_right_pin, LOW);
   
+  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+
   xTaskCreatePinnedToCore(
       SecondCore_Code, /* Function to implement the task */
       "SecondCore", /* Name of the task */
