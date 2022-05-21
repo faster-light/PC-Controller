@@ -260,7 +260,7 @@ void loop() {
   ArduinoOTA.handle();
   wifi_mqtt_servises();
 
-  if (true) {
+  if (false) {
     for(int i = 0; i < 100; i++) {
       for(int j = 0; j < strip_R.numPixels(); j++) {
         strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, i * 2.55));
