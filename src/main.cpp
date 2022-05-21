@@ -72,8 +72,7 @@ void SecondCore_Code( void * parameter) {
     }
 
     for(int i = 0; i < strip_R.numPixels(); i++) {
-      //strip_R.setPixelColor(i, strip_R.ColorHSV(234 * 182, 100 * 2.55, 78.4 * 2.55));
-      strip_R.setPixelColor(i, 0, 20, 200);
+      strip_R.setPixelColor(i, strip_R.ColorHSV((234 + i) * 182, 100 * 2.55, 78.4 * 2.55));
       strip_R.show();
       delay(100);
     }
