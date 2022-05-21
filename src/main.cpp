@@ -72,7 +72,7 @@ void SecondCore_Code( void * parameter) {
       }
       strip_L.show();
       strip_R.show();
-      delay(5);
+      delay(15);
     }
 
     for(int i = 0; i < 100; i++) {
@@ -82,7 +82,7 @@ void SecondCore_Code( void * parameter) {
       }
       strip_L.show();
       strip_R.show();
-      delay(5);
+      delay(15);
     }
 
   }
