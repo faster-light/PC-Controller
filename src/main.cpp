@@ -65,27 +65,25 @@ int strcheck(char *str1, const char *str2) {
 void SecondCore_Code( void * parameter) {
   for(;;) { 
 
-    for(int i = 0; i < strip_L.numPixels(); i++) {
-      strip_L.setPixelColor(i, strip_R.ColorHSV(234 * 182, 100 * 2.55, 78 * 2.55));
+    for(int i = 0; i < 100; i++) {
+      for(int j = 0; j < strip_R.numPixels(); j++) {
+        strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, i * 2.55));
+        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, i * 2.55));
+      }
       strip_L.show();
-      delay(100);
-    }
-
-    for(int i = 0; i < strip_R.numPixels(); i++) {
-      strip_R.setPixelColor(i, strip_R.ColorHSV(317 * 182, 100 * 2.55, 78 * 2.55));
       strip_R.show();
-      delay(100);
+      delay(5);
     }
 
-    for(int i = 0; i < strip_R.numPixels(); i++) {
-      strip_R.setPixelColor(i, 0, 0, 0);
-      strip_L.setPixelColor(i, 0, 0, 0);
+    for(int i = 0; i < 100; i++) {
+      for(int j = 0; j < strip_R.numPixels(); j++) {
+        strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, (100 - i) * 2.55));
+        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, (100 - i) * 2.55));
+      }
+      strip_L.show();
+      strip_R.show();
+      delay(5);
     }
-
-    delay(20000);
-
-    strip_L.show();
-    strip_R.show();
 
   }
 }
