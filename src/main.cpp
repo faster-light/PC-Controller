@@ -263,7 +263,7 @@ void loop() {
     for(int i = 0; i < 100; i++) {
       for(int j = 0; j < strip_R.numPixels(); j++) {
         strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, i * 2.55));
-        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, i * 2.55));
+        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, (100 - i) * 2.55));
       }
       strip_L.show();
       strip_R.show();
@@ -273,7 +273,7 @@ void loop() {
     for(int i = 0; i < 100; i++) {
       for(int j = 0; j < strip_R.numPixels(); j++) {
         strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, (100 - i) * 2.55));
-        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, (100 - i) * 2.55));
+        strip_R.setPixelColor(j, strip_R.ColorHSV(317 * 182, 100 * 2.55, i * 2.55));
       }
       strip_L.show();
       strip_R.show();
