@@ -279,6 +279,15 @@ void loop() {
       strip_R.show();
       delay(100);
     }
+  } else {
+      for(int j = 0; j < strip_R.numPixels(); j++) {
+        strip_L.setPixelColor(j, strip_R.ColorHSV(0, 0, 0));
+        strip_R.setPixelColor(j, strip_R.ColorHSV(0, 0, 0));
+      }    
+
+      strip_L.show();
+      strip_R.show();
+      delay(100);
   }
 
 }
