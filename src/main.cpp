@@ -267,7 +267,7 @@ void loop() {
       }
       strip_L.show();
       strip_R.show();
-      delay(15);
+      delay(30);
     }
 
     for(int i = 0; i < 83; i++) {
@@ -277,7 +277,7 @@ void loop() {
       }
       strip_L.show();
       strip_R.show();
-      delay(15);
+      delay(30);
     }
   }
 
