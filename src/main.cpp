@@ -45,6 +45,8 @@ int voltage_right_pin = 35;
 
 int voltage_5v_pin = 33;
 
+bool indication_main = false;
+
 // Second core object (parallel main loop worked)
 TaskHandle_t SecondCore;
 
@@ -86,7 +88,6 @@ void initial_OTA() {
 
   ArduinoOTA.begin();
 }
-
 // ---------------------------- Event of receiving MQTT messages ------------------------------ //
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
@@ -141,11 +142,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   Serial.println(value);
 
-
-//  if (strcheck(topic, topic_light_8)) {
-//    video_temp = value;
-//  }
-
+  if (strcheck(topic, topic_light_15)) {
+    indication_main = value;
+  }
 
 }
 // ------------------------ WiFi connect function (usually no change) ------------------------- //
@@ -189,7 +188,7 @@ void mqtt_connect() {
     if (client.connect(clientId.c_str(), mqtt_user, mqtt_pass)) {
       Serial.println(" connected");
       // Once connected, publish an announcement...
-      //client.subscribe(topic_light_7);
+      client.subscribe(topic_light_15);
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -260,7 +259,7 @@ void loop() {
   ArduinoOTA.handle();
   wifi_mqtt_servises();
 
-  if (false) {
+  if (indication_main) {
     for(int i = 0; i < 100; i++) {
       for(int j = 0; j < strip_R.numPixels(); j++) {
         strip_L.setPixelColor(j, strip_R.ColorHSV(234 * 182, 100 * 2.55, i * 2.55));
